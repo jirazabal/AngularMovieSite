@@ -1,0 +1,6 @@
+TODO:
+
+1. top logo
+2. link other pages
+3. various small tidying things for aesthetics(TM)
+    make back of card blurred poster image

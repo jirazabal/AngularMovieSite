@@ -1,21 +1,62 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="background" id="backdrop">
+  <app-layout>
+    <div class="jumbotron">
+      <h1>Popcorn Pass</h1>
+      <input type="text" id="ip2" value = "Search for your favorite movie, TV show, or actor..."/> <br />
+    <br />
+      <ng-container>
+        <div class="container">
+          <!-- Content here -->
+          <ul class="nav nav-pills">
+            <li class="nav-item dropdown">
+              <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                aria-expanded="false" id="sortTag">Sort by: </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" [routerLink]="" (click)="switchSort(1)">Now Playing</a>
+                <a class="dropdown-item" [routerLink]="" (click)="switchSort(2)">Top Rated</a>
+                <a class="dropdown-item" [routerLink]="" (click)="switchSort(3)">Popular</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" [routerLink]="" (click)="switchSort(4)">Upcoming</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <br />
 
-<router-outlet></router-outlet>
+      </ng-container>
+      <div class=sortBy></div>
+      <div class="wrapper">
+        <ng-container *ngFor="let results of restItems['results']; let i = index">
+            <div class="ticket">
+                <div class="card" id="{{i}}" onclick="flip(this)">
+                  <div class="front">
+                    <img src="http://image.tmdb.org/t/p/w185/{{results.poster_path}}" />
+                  </div>
+                  <div class="back">
+                    <p class="title">{{results.title}}</p>
+                    <p class="overview">{{results.overview}}</p>
+                  </div>
+                </div>
+              </div>
+        </ng-container>
+      </div>
+
+      <br />
+      <div class="pagination">
+        <a (click)="jumpToFirst()" href="#">&laquo;</a>
+        <a (click)="decrementPageNumber()" href="#">&lt;</a>
+        <b><a class="pages" id="pageNum"></a></b>
+        <a (click)="incrementPageNumber()" href="#">&gt;</a>
+        <a (click)="jumpToLast()" href="#">&raquo;</a>
+      </div>
+
+      <form action="">
+        Jump to Page: <input class="input" type="text" id="input" maxlength="3" size="3" placeholder="1">
+        <br>
+        <br>
+      </form>
+      <button (click)="submitClick()" class="submitButton">Jump!</button>
+    </div>
+  </app-layout>
+  
+</div>
